@@ -11,8 +11,15 @@ The generated project has a few basics set up beyond the bare Compojure defaults
 * lein-ring for development
 
 ## Usage
+activate WeiXin development model on [WeiXin Back-end](http://mp.weixin.qq.com),
+change `TOKEN` on `api.clj` file.
 
-    $ lein new heroku myapp
+Weixin Interface config:
+
+    URL: http://{{name}}.herokuapp.com/api
+    Token: your token
+
+    $ lein new weixin-on-heroku myapp
     $ cd myapp
     $ git init
     $ heroku apps:create myapp
