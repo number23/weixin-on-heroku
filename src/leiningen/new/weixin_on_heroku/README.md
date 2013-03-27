@@ -10,7 +10,7 @@ This generated project has a few basics set up beyond the bare Compojure default
 * [HTTP-based REPL debugging](https://devcenter.heroku.com/articles/debugging-clojure) via [drawbridge](https://github.com/cemerick/drawbridge)
 
 ## Usage
-activate WeiXin development model on [WeiXin Back-end](http://mp.weixin.qq.com),
+activate WeiXin development model on [WeiXin Back-end](http://mp.weixin.qq.com),  
 change `TOKEN` on `api.clj` file.
 
 Weixin Interface config:

@@ -11,7 +11,7 @@ The generated project has a few basics set up beyond the bare Compojure defaults
 * lein-ring for development
 
 ## Usage
-activate WeiXin development model on [WeiXin Back-end](http://mp.weixin.qq.com),
+activate WeiXin development model on [WeiXin Back-end](http://mp.weixin.qq.com),  
 change `TOKEN` on `api.clj` file.
 
 Weixin Interface config:
@@ -28,7 +28,7 @@ Weixin Interface config:
     $ git push heroku master
     $ curl http://myapp.herokuapp.com
 
-See the [README of the generated project](https://github.com/number23/weixin-on-heroku/blob/master/src/leiningen/new/weixin-on-heroku/README.md) for details.
+See the [README of the generated project](https://github.com/number23/weixin-on-heroku/blob/master/src/leiningen/new/weixin_on_heroku/README.md) for details.
 
 ## License
 
