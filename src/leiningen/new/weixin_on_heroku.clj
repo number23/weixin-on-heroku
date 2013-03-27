@@ -7,7 +7,9 @@
   (let [render (t/renderer "weixin-on-heroku")
         data {:name name
               :dir (t/sanitize name)
-              :year (+ (.getYear (java.util.Date.)) 1900)}]
+              :year (+ (.getYear (java.util.Date.)) 1900)
+              :strs-get "{{:strs [signature timestamp nonce echostr]} :query-params}"
+              :strs-post "{{:strs [signature timestamp nonce]} :query-params body :body}"}]
     (t/->files data
                [".gitignore" (render "gitignore" data)]
                ["Procfile" (render "Procfile" data)]

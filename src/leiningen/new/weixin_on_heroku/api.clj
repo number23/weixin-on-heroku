@@ -68,12 +68,12 @@
     @res))
 
 (defroutes api-routes
-  (GET "/" {{:strs [signature timestamp nonce echostr]} :query-params}
+  (GET "/" {{strs-get}}
        (if (check-signature
             :signature signature
             :timestamp timestamp
             :nonce nonce) echostr ""))
-  (POST "/" {{:strs [signature timestamp nonce]} :query-params body :body}
+  (POST "/" {{strs-post}}
         (if (check-signature
             :signature signature
             :timestamp timestamp
