@@ -1,5 +1,5 @@
 (ns {{name}}.web
-  (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
+  (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY context]]
             [compojure.handler :refer [site]]
             [compojure.route :as route]
             [clojure.java.io :as io]
@@ -9,7 +9,8 @@
             [ring.adapter.jetty :as jetty]
             [ring.middleware.basic-authentication :as basic]
             [cemerick.drawbridge :as drawbridge]
-            [environ.core :refer [env]]))
+            [environ.core :refer [env]])
+  (:use [{{name}}.api :only (api-routes)]))
 
 (defn- authenticated? [user pass]
   ;; TODO: heroku config:add REPL_USER=[...] REPL_PASSWORD=[...]
@@ -23,6 +24,7 @@
 (defroutes app
   (ANY "/repl" {:as req}
        (drawbridge req))
+  (context "/api" [] api-routes)
   (GET "/" []
        {:status 200
         :headers {"Content-Type" "text/plain"}
@@ -38,17 +40,17 @@
             :headers {"Content-Type" "text/html"}
             :body (slurp (io/resource "500.html"))}))))
 
+(def ring-handler
+  (-> #'app
+      ((if (env :production)
+         wrap-error-page
+         trace/wrap-stacktrace))
+      (site {:session {:store (cookie/cookie-store {:key (env :session-secret)})}})))
+
 (defn -main [& [port]]
-  (let [port (Integer. (or port (env :port) 5000))
-        ;; TODO: heroku config:add SESSION_SECRET=$RANDOM_16_CHARS
-        store (cookie/cookie-store {:key (env :session-secret)})]
-    (jetty/run-jetty (-> #'app
-                         ((if (env :production)
-                            wrap-error-page
-                            trace/wrap-stacktrace))
-                         (site {:session {:store store}}))
+  (let [port (Integer. (or port (env :port) 5000))]
+    (jetty/run-jetty ring-handler
                      {:port port :join? false})))
 
 ;; For interactive development:
-;; (.stop server)
-;; (def server (-main))
+;; $ lein ring server
