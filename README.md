@@ -1,4 +1,4 @@
-# Heroku Leiningen Template
+# Weixin-on-heroku Leiningen Template
 
 A Leiningen template for weixin robot on Heroku platform.
 
@@ -8,6 +8,7 @@ The generated project has a few basics set up beyond the bare Compojure defaults
 * Stack traces when in development
 * Environment-based config via [environ](https://github.com/weavejester/environ)
 * [HTTP-based REPL debugging](https://devcenter.heroku.com/articles/debugging-clojure) via [drawbridge](https://github.com/cemerick/drawbridge)
+* lein-ring for development
 
 ## Usage
 
@@ -20,10 +21,10 @@ The generated project has a few basics set up beyond the bare Compojure defaults
     $ git push heroku master
     $ curl http://myapp.herokuapp.com
 
-See the [README of the generated project](https://github.com/technomancy/lein-heroku/blob/master/lein-template/src/leiningen/new/heroku/README.md) for details.
+See the [README of the generated project](https://github.com/number23/weixin-on-heroku/blob/master/src/leiningen/new/weixin-on-heroku/README.md) for details.
 
 ## License
 
-Copyright © 2012 Heroku
+Copyright © 2013 number23_cn <https://twitter.com/number23_cn>
 
 Distributed under the Eclipse Public License, the same as Clojure.
