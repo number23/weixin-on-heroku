@@ -52,5 +52,7 @@
     (jetty/run-jetty ring-handler
                      {:port port :join? false})))
 
-;; For interactive development:
+;; For development:
 ;; $ lein ring server
+;; $ foreman start
+
